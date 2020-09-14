@@ -1,0 +1,3 @@
+useDynLib(NeutronNoise, .registration=TRUE)
+exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, evalCpp)
