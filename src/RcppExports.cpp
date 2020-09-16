@@ -5,19 +5,23 @@
 
 using namespace Rcpp;
 
-// rcpp_hello_world
-List rcpp_hello_world();
-RcppExport SEXP _NeutronNoise_rcpp_hello_world() {
+// feynman_hist
+DataFrame feynman_hist(const NumericVector x, const NumericVector samples_widths, const int max_nb_samples, const int verbose);
+RcppExport SEXP _NeutronNoise_feynman_hist(SEXP xSEXP, SEXP samples_widthsSEXP, SEXP max_nb_samplesSEXP, SEXP verboseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpp_hello_world());
+    Rcpp::traits::input_parameter< const NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const NumericVector >::type samples_widths(samples_widthsSEXP);
+    Rcpp::traits::input_parameter< const int >::type max_nb_samples(max_nb_samplesSEXP);
+    Rcpp::traits::input_parameter< const int >::type verbose(verboseSEXP);
+    rcpp_result_gen = Rcpp::wrap(feynman_hist(x, samples_widths, max_nb_samples, verbose));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_NeutronNoise_rcpp_hello_world", (DL_FUNC) &_NeutronNoise_rcpp_hello_world, 0},
+    {"_NeutronNoise_feynman_hist", (DL_FUNC) &_NeutronNoise_feynman_hist, 4},
     {NULL, NULL, 0}
 };
 

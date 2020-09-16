@@ -1,0 +1,10 @@
+CXX_STD = CXX17
+
+CPPFILES = RcppExports.cpp feynman_hist.cpp fmt/format.cpp fmt/posix.cpp
+
+SOURCES = $(CPPFILES)
+
+OBJECTS = $(CPPFILES:.cpp=.o)
+
+PKG_CPPFLAGS = -I./include -I./fmt/include
+
