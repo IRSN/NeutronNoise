@@ -92,6 +92,7 @@ auto feynman_hist_sub_task(const double *x_begin,
 //' This histogram therefore represents the occurrence probabilities of various multiplets (i.e. 1 detection, 2 detections, etc.) occuring within
 //' a specified time gate width \code{T}.
 //' To avoid numerical problem with functions using \code{feynman_hist} the last sample is not taken into account.
+//' This function uses all available cores of the computer.
 //' 
 //' @param x A sorted numeric vector representing the detection times. The function assumes that the signal starts at the time 0 seconds. 
 //' @param samples_widths Numeric vector of samples width (multiple values of \code{T}).

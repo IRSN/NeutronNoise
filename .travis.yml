@@ -5,13 +5,15 @@ language: R
 r:
   - release
 
-cache: packages
+cache : packages
 
 warnings_are_errors : false
 
-r_github_packages:
-  - r-lib/covr
+#r_github_packages:
+#  - r-lib/covr
 
+r_packages:
+  - covr
 
 before_install:
   - mkdir -p ~/.R

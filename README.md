@@ -3,3 +3,9 @@
 
 # NeutronNoise
 Tools for neutron noise analysis
+
+
+# Features
+
+- Multi-Thread Feynman histogram calculation
+
