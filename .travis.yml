@@ -30,4 +30,8 @@ after_success:
   - tar -C .. -xf $PKG_TARBALL
   - ls
   - ls ..
+<<<<<<< HEAD
   - Rscript -e 'covr::codecov(path="../NeutronNoise")'
+=======
+  - Rscript -e 'covr::codecov()'
+>>>>>>> 7cb3aa6bb8e576946414c83769fb53ff10ff091a
