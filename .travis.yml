@@ -27,4 +27,5 @@ addons:
       - g++-7
 
 after_success:
+  - tar -C .. -xf $PKG_TARBALL
   - Rscript -e 'covr::codecov()'
