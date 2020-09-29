@@ -27,9 +27,10 @@ r_check_args: --no-build-vignettes --no-manual --timings
 addons:
   apt:
     sources:
-      - sourceline: 'ppa:ubuntu-toolchain-r/test'
+    - ubuntu-toolchain-r-test
     packages:
-      - g++-7
+    - gcc-7
+    - g++-7
 
 after_success:
   - Rscript -e 'covr::codecov()'
