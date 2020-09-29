@@ -20,6 +20,8 @@
 #' @param verbose For debbuging purpose only.
 #' @return A data.frame.
 #' 
+#' @importFrom magrittr "%>%"
+#' 
 #' @examples
 #' hs <- feynman_hist(sort(runif(0,10, n=10000)), c(0.11, 0.33, 0.58))
 #' plot(hs)
