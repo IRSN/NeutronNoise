@@ -9,9 +9,6 @@ cache : packages
 
 warnings_are_errors : false
 
-#r_github_packages: 
-#  - r-lib/covr
-
 r_packages:
   - covr
   - devtools
@@ -19,6 +16,13 @@ r_packages:
 before_install:
   - mkdir -p ~/.R
   - echo 'CXX17 = g++-7 -std=gnu++17 -fPIC' > ~/.R/Makevars
+
+script:
+  - R CMD build .
+  - R CMD check *tar.gz
+
+r_build_args: --no-build-vignettes --no-manual
+r_check_args: --no-build-vignettes --no-manual --timings
 
 addons:
   apt:
@@ -28,4 +32,4 @@ addons:
       - g++-7
 
 after_success:
-  - Rscript -e 'library(covr); codecov()'
+  - Rscript -e 'covr::codecov()'
