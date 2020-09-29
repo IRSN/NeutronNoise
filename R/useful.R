@@ -4,7 +4,9 @@
 # https://r-pkgs.org/
 # https://cran.r-project.org/doc/manuals/R-exts.html
 # https://blog.methodsconsultants.com/posts/developing-r-packages-with-usethis-and-gitlab-ci-part-ii/
-  
+# http://dirk.eddelbuettel.com/blog/2017/06/13/  
+# https://towardsdatascience.com/travis-ci-for-r-advanced-guide-719cb2d9e0e5#5da6
+
 #' @import ggplot2
 #' @useDynLib NeutronNoise
 #' @importFrom Rcpp sourceCpp
