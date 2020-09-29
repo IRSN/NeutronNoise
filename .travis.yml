@@ -36,4 +36,5 @@ addons:
 after_success:
   - mkdir -p ~/.R
   - echo 'CXX17 = g++-7 -std=gnu++17 -fPIC' > ~/.R/Makevars
+  - export CXX17="g++-7 -std=gnu++17 -fPIC"
   - Rscript -e 'covr::package_coverage(quiet = FALSE)'
