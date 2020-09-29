@@ -24,4 +24,4 @@ Encoding: UTF-8
 Suggests: 
     testthat,
     covr
-
+SystemRequirements: C++17
