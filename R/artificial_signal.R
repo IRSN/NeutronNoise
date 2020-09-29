@@ -18,6 +18,7 @@
 #' 
 #' @importFrom data.table data.table setkey
 #' @importFrom stats runif rexp
+#' @importFrom magrittr "%>%"
 #' 
 #' @examples 
 #' artificial_signal(duration = 10, uncorr_rate = 5, hists_rate = 20, 
@@ -63,6 +64,8 @@ artificial_signal <- function(duration, uncorr_rate = 0, hists_rate = 0, fission
   }
   
   setkey(d, "TIME")
+  
+  class(d) <- c("signal", "data.table", "data.frame")
   
   d
 }

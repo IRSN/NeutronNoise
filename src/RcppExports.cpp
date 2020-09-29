@@ -6,12 +6,12 @@
 using namespace Rcpp;
 
 // feynman_hist
-DataFrame feynman_hist(const NumericVector x, const NumericVector samples_widths, const int max_nb_samples, const int verbose);
+DataFrame feynman_hist(const SEXP x, const NumericVector samples_widths, const int max_nb_samples, const int verbose);
 RcppExport SEXP _NeutronNoise_feynman_hist(SEXP xSEXP, SEXP samples_widthsSEXP, SEXP max_nb_samplesSEXP, SEXP verboseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const NumericVector >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const SEXP >::type x(xSEXP);
     Rcpp::traits::input_parameter< const NumericVector >::type samples_widths(samples_widthsSEXP);
     Rcpp::traits::input_parameter< const int >::type max_nb_samples(max_nb_samplesSEXP);
     Rcpp::traits::input_parameter< const int >::type verbose(verboseSEXP);

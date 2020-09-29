@@ -7,7 +7,8 @@
 feynman_hist(x, samples_widths, max_nb_samples = 0L, verbose = 0L)
 }
 \arguments{
-\item{x}{A sorted numeric vector representing the detection times. The function assumes that the signal starts at the time 0 seconds.}
+\item{x}{Either a sorted numeric vector representing the detection times of a data.frame with a sorted TIME column.
+The function assumes that the signal starts at the time 0 seconds.}
 
 \item{samples_widths}{Numeric vector of samples width (multiple values of \code{T}).}
 
@@ -31,6 +32,8 @@ This function uses all available cores of the computer.
 \examples{
 hs <- feynman_hist(sort(runif(0,10, n=10000)), c(0.11, 0.33, 0.58))
 plot(hs)
+feynman_hist(data.frame(TIME=sort(runif(0,10, n=10000))), c(0.11, 0.33, 0.58)) \%>\% plot()
+artificial_signal(1000, 5) \%>\% feynman_hist(samples_widths = 0.8) \%>\% plot()
 
 }
 \seealso{

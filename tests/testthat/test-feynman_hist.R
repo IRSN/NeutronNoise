@@ -10,7 +10,14 @@ test_that("wrong parameters values", {
   # x is sorted but contains negative values
   expect_error(feynman_hist(-1:10, samples_width = 2), "x must be positive and sorted.")
   
-  # Signal duration is a multiple of samples width
+  # x is not has wront type
+  expect_error(feynman_hist("abc", samples_widths = 2), "Bad x type")
+  
+})
+
+test_that("Normal", {
+  
+  # Signal duration is a multiple of samples width + x as data.frame + x as list
   set.seed(1)
   x <- runif(1000, min = 0, max = 10)
   d <- table(head(hist(x, seq(from = 0, to = 10, by = 2), plot = FALSE)$counts, n = -1))
@@ -20,8 +27,22 @@ test_that("wrong parameters values", {
                   frequency = as.integer(d))
   class(d) <- c("feynman_hist", "data.frame")
   expect_equal(feynman_hist(sort(x), samples_width = 2), d)
+  expect_equal(feynman_hist(data.frame(TIME = sort(x)), samples_width = 2), d)
+  expect_equal(feynman_hist(list(TIME = sort(x)), samples_width = 2), d)
+  expect_equal(feynman_hist(data.frame(TIME = sort(x), DUMMY = 3), samples_width = 2), d)
   
- 
+  # Limited number of samples
+  set.seed(1)
+  x <- runif(1000, min = 0, max = 10)
+  d <- table(head(hist(x, seq(from = 0, to = 10, by = 2), plot = FALSE)$counts, n = 2))
+  d <- data.frame(samples_width = 2, 
+                  nb_samples = 2, 
+                  multiplet = as.integer(names(d)), 
+                  frequency = as.integer(d))
+  class(d) <- c("feynman_hist", "data.frame")
+  expect_equal(feynman_hist(sort(x), samples_width = 2, max_nb_samples = 2), d)
+  
+  
   # Signal duration is not a multiple of samples width
   set.seed(1)
   x <- c(runif(1000, min = 0, max = 10), runif(100, 0.55, 0.999))

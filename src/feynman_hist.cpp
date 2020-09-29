@@ -60,11 +60,11 @@ auto feynman_hist_sub_task(const double *x_begin,
   
   // On ne compte que si on n'est pas arrivé au bout
   // pour ne pas prendre en compte un échantillon non entier.
-  if(x_it != x_end)
+  /*if(x_it != x_end)
   {
     h.commit();
     nb_samples ++;
-  }
+  }*/
   
   
   FeynmanHistReturn ret;
@@ -98,7 +98,8 @@ auto feynman_hist_sub_task(const double *x_begin,
 //' 
 //' This function uses all available cores of the computer.
 //' 
-//' @param x A sorted numeric vector representing the detection times. The function assumes that the signal starts at the time 0 seconds. 
+//' @param x Either a sorted numeric vector representing the detection times of a data.frame with a sorted TIME column.
+//' The function assumes that the signal starts at the time 0 seconds. 
 //' @param samples_widths Numeric vector of samples width (multiple values of \code{T}).
 //' @param max_nb_samples If different from 0 then the calculation is limited to the specified number of samples. 
 //' @param verbose For debbuging purpose only.
@@ -107,24 +108,38 @@ auto feynman_hist_sub_task(const double *x_begin,
 //' @examples
 //' hs <- feynman_hist(sort(runif(0,10, n=10000)), c(0.11, 0.33, 0.58))
 //' plot(hs)
+//' feynman_hist(data.frame(TIME=sort(runif(0,10, n=10000))), c(0.11, 0.33, 0.58)) %>% plot()
+//' artificial_signal(1000, 5) %>% feynman_hist(samples_widths = 0.8) %>% plot()
 //' 
 //' @seealso \link[NeutronNoise]{plot.feynman_hist} for ploting the result.
 //' @export
 // [[Rcpp::export]]
-DataFrame feynman_hist(const NumericVector x, 
+DataFrame feynman_hist(const SEXP x, 
                        const NumericVector samples_widths, 
                        const int max_nb_samples = 0,
                        const int verbose = 0)
 {
   Log::set_threshold(verbose);
   
+  auto get_x_arg=[&x](){
+    if(TYPEOF(x) == REALSXP || TYPEOF(x) == INTSXP)
+    {
+      return as<NumericVector>(x);
+    } else if(TYPEOF(x) == VECSXP) {
+      return as<NumericVector>((as<DataFrame>(x))["TIME"]);
+    }
+    stop("Bad x type");
+  };
+  
+  const NumericVector xx = get_x_arg();
+  
   stop_if(samples_widths.size() == 0, "samples_widths is empty.");
   
   stop_if(min(samples_widths) <= 0, "samples_widths not strictly postive.");
   
-  stop_if(x.size() == 0, "x is empty.");
+  stop_if(xx.size() == 0, "x is empty.");
   
-  stop_if(is_sorted(x) == false || x[0] < 0, "x must be positive and sorted.");
+  stop_if(is_sorted(xx) == false || xx[0] < 0, "x must be positive and sorted.");
   
   stop_if(max_nb_samples < 0, "max_nb_samples is negative.");
   
@@ -134,7 +149,7 @@ DataFrame feynman_hist(const NumericVector x,
   
   for(int i = 0; i < samples_widths.size(); i++)
   {
-    futures[i] = pool.pushReturn(feynman_hist_sub_task, cbegin(x), cend(x), samples_widths[i], max_nb_samples, verbose);
+    futures[i] = pool.pushReturn(feynman_hist_sub_task, cbegin(xx), cend(xx), samples_widths[i], max_nb_samples, verbose);
   }
   
   vector<double> ret_samples_widths;
