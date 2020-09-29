@@ -28,11 +28,12 @@ script:
 addons:
   apt:
     sources:
-    - ubuntu-toolchain-r-test
+      - ubuntu-toolchain-r-test
     packages:
-    - gcc-7
-    - g++-7
+      - gcc-7
+      - g++-7
 
 after_success:
-  - CXX17="g++-7 -std=gnu++17 -fPIC"
+  - mkdir -p ~/.R
+  - echo 'CXX17 = g++-7 -std=gnu++17 -fPIC' > ~/.R/Makevars
   - Rscript -e 'covr::package_coverage(quiet = FALSE)'
