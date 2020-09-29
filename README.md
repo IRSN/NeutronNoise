@@ -10,3 +10,5 @@ Tools for neutron noise analysis.
 
 - Multi-Thread Feynman histogram calculation.
 
+- Artificial signal generation.
+

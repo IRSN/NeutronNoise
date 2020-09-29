@@ -3,19 +3,61 @@
 
 #' Feynman histogram
 #' 
+#' @description
 #' This function divide the signal into equal samples of width \code{T}. 
 #' For each of them the number of events are counted and binned into a histogram called the Feynman histogram.
 #' This histogram therefore represents the occurrence probabilities of various multiplets (i.e. 1 detection, 2 detections, etc.) occuring within
 #' a specified time gate width \code{T}.
+#' 
 #' To avoid numerical problem with functions using \code{feynman_hist} the last sample is not taken into account.
+#' 
+#' This function uses all available cores of the computer.
 #' 
 #' @param x A sorted numeric vector representing the detection times. The function assumes that the signal starts at the time 0 seconds. 
 #' @param samples_widths Numeric vector of samples width (multiple values of \code{T}).
 #' @param max_nb_samples If different from 0 then the calculation is limited to the specified number of samples. 
 #' @param verbose For debbuging purpose only.
-#' @return A DataFrame.
+#' @return A data.frame.
+#' 
+#' @examples
+#' hs <- feynman_hist(sort(runif(0,10, n=10000)), c(0.11, 0.33, 0.58))
+#' plot(hs)
+#' 
+#' @seealso \link[NeutronNoise]{plot.feynman_hist} for ploting the result.
 #' @export
 feynman_hist <- function(x, samples_widths, max_nb_samples = 0L, verbose = 0L) {
     .Call('_NeutronNoise_feynman_hist', PACKAGE = 'NeutronNoise', x, samples_widths, max_nb_samples, verbose)
+}
+
+#' Generate virtual fission chains length
+#' 
+#' This function makes it possible to obtain the lengths of virtual fission chains. 
+#' The length of a fission chain is defined as the total number of neutrons contained 
+#' in it (this also includes the neutrons of the source event).
+#' The algorithm works as follows:
+#' - a first source fission is generated and eventually produces child neutrons.
+#' - Each child neutron performs or not a fission with a probability and eventually produces child neutrons.
+#' - The previous step is repeated until there are no more child neutrons.
+#' The number of generated child neutrons depends on the multiplicity parameter.
+#' Delayed neutrons are not taken into account.
+#' 
+#' @param n Number of virtual fission chains simulated.
+#' @param fission_multiplicity A DataFrame containing the number (nu column) and the probability (pdf column) of 
+#' of generated neutron per fission.
+#' @param k System multiplication (between 0 and 0.99).
+#' @param seed Seed of the random generator.
+#' 
+#' @return A list containing:
+#' - the mean nu value, 
+#' - the fission probability,
+#' - the chains lengths.
+#' 
+#' @examples
+#' get_fission_chains_length(fission_multiplicity = data.frame(nu = 0:2, pdf = c(0.1,0.2,0.3)), 
+#' n = 5, k = 0.7)
+#' 
+#' @export
+get_fission_chains_length <- function(n, fission_multiplicity, k, seed = 1L) {
+    .Call('_NeutronNoise_get_fission_chains_length', PACKAGE = 'NeutronNoise', n, fission_multiplicity, k, seed)
 }
 

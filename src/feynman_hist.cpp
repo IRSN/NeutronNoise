@@ -1,6 +1,7 @@
 #include <Rcpp.h>
 #include <RcppThread.h>
 #include <useful.hpp>
+#include <IntegerHist.hpp>
 #include <log.hpp>
 #include <tuple>
 
@@ -23,10 +24,10 @@ struct FeynmanHistReturn
 //
 //
 auto feynman_hist_sub_task(const double *x_begin, 
-                                        const double* x_end, 
-                                        double samples_width, 
-                                        int max_nb_samples, 
-                                        int verbose)
+                           const double* x_end, 
+                           double samples_width, 
+                           int max_nb_samples, 
+                           int verbose)
 {
   int nb_samples = 0;
   double gate_end = samples_width;
@@ -64,7 +65,7 @@ auto feynman_hist_sub_task(const double *x_begin,
     h.commit();
     nb_samples ++;
   }
-    
+  
   
   FeynmanHistReturn ret;
   ret.samples_width = samples_width;
@@ -87,18 +88,27 @@ auto feynman_hist_sub_task(const double *x_begin,
 // ============================================================================
 //' Feynman histogram
 //' 
+//' @description
 //' This function divide the signal into equal samples of width \code{T}. 
 //' For each of them the number of events are counted and binned into a histogram called the Feynman histogram.
 //' This histogram therefore represents the occurrence probabilities of various multiplets (i.e. 1 detection, 2 detections, etc.) occuring within
 //' a specified time gate width \code{T}.
+//' 
 //' To avoid numerical problem with functions using \code{feynman_hist} the last sample is not taken into account.
+//' 
 //' This function uses all available cores of the computer.
 //' 
 //' @param x A sorted numeric vector representing the detection times. The function assumes that the signal starts at the time 0 seconds. 
 //' @param samples_widths Numeric vector of samples width (multiple values of \code{T}).
 //' @param max_nb_samples If different from 0 then the calculation is limited to the specified number of samples. 
 //' @param verbose For debbuging purpose only.
-//' @return A DataFrame.
+//' @return A data.frame.
+//' 
+//' @examples
+//' hs <- feynman_hist(sort(runif(0,10, n=10000)), c(0.11, 0.33, 0.58))
+//' plot(hs)
+//' 
+//' @seealso \link[NeutronNoise]{plot.feynman_hist} for ploting the result.
 //' @export
 // [[Rcpp::export]]
 DataFrame feynman_hist(const NumericVector x, 
@@ -149,10 +159,14 @@ DataFrame feynman_hist(const NumericVector x,
   
   
   
-  return DataFrame::create(_["samples_width"] = ret_samples_widths,
-                           _["nb_samples"] = ret_nb_samples,
-                           _["multiplet"] = ret_multiplet,
-                           _["frequency"] = ret_frequency);
+  DataFrame ret = DataFrame::create(_["samples_width"] = ret_samples_widths,
+                                    _["nb_samples"] = ret_nb_samples,
+                                    _["multiplet"] = ret_multiplet,
+                                    _["frequency"] = ret_frequency);
+  
+  ret.attr("class") = CharacterVector::create ("feynman_hist", "data.frame");
+  
+  return ret;
 }
 
 

@@ -36,6 +36,7 @@ void warning_if(bool test, const std::string &message, Args &&... args)
     Rcpp::warning(fmt::format(message, std::forward<Args>(args)...));
 }
 
+/*
 //-------------------------------------------------------------------------------------------------
 //
 //-------------------------------------------------------------------------------------------------
@@ -47,7 +48,7 @@ inline bool is_strictly_increasing ( X & x) {
     ++i;
   return (!(i != j)) ;
 }
-
+*/
 
 //-------------------------------------------------------------------------------------------------
 //
@@ -63,7 +64,7 @@ inline bool is_sorted(const X & x) {
 
 
 
-
+/*
 
 //-------------------------------------------------------------------------------------------------
 //
@@ -77,7 +78,7 @@ inline bool is_of_class (const Rcpp::RObject & x, std::string s) {
   Rcpp::CharacterVector b = Rcpp::wrap (x.attr ("class"));
   return Rcpp::is_true(Rcpp::any (Rcpp::in (a, b)));
 }
-
+*/
 
 //-------------------------------------------------------------------------------------------------
 //
@@ -89,6 +90,7 @@ inline void check_user_interrupt(int step)
     Rcpp::checkUserInterrupt();
 }
 
+/*
 //-------------------------------------------------------------------------------------------------
 //
 //-------------------------------------------------------------------------------------------------
@@ -100,47 +102,7 @@ inline void check_user_interrupt_thread(int step)
     RcppThread::checkUserInterrupt();
 }
 
-//-------------------------------------------------------------------------------------------------
-//
-//-------------------------------------------------------------------------------------------------
-/*inline bool is_interrupted_thread(int step)
-{
-  static int i_check_is_interrupt_thread = 0;
-  
-  if(++i_check_is_interrupt_thread % step == 0)
-    return RcppThread::isInterrupted();
-  return false;
-}*/
-
-//-------------------------------------------------------------------------------------------------
-//
-//-------------------------------------------------------------------------------------------------
-class IntegerHist
-{
-  std::vector<unsigned long long int> data;
-  unsigned long long int i = 0;
-
-public:
-
-  void operator () ()
-  {
-    i ++;
-  }
-
-  void commit()
-  {
-    if(data.size() <= i)
-      data.resize(i + 1, 0);
-    data[i]++;
-    i = 0;
-  }
-
-  const auto & get_data()
-  {
-    return data;
-  }
-};
-
+*/
 
 
 #endif

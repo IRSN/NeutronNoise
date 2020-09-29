@@ -16,12 +16,23 @@ feynman_hist(x, samples_widths, max_nb_samples = 0L, verbose = 0L)
 \item{verbose}{For debbuging purpose only.}
 }
 \value{
-A DataFrame.
+A data.frame.
 }
 \description{
 This function divide the signal into equal samples of width \code{T}. 
 For each of them the number of events are counted and binned into a histogram called the Feynman histogram.
 This histogram therefore represents the occurrence probabilities of various multiplets (i.e. 1 detection, 2 detections, etc.) occuring within
 a specified time gate width \code{T}.
+
 To avoid numerical problem with functions using \code{feynman_hist} the last sample is not taken into account.
+
+This function uses all available cores of the computer.
+}
+\examples{
+hs <- feynman_hist(sort(runif(0,10, n=10000)), c(0.11, 0.33, 0.58))
+plot(hs)
+
+}
+\seealso{
+\link[NeutronNoise]{plot.feynman_hist} for ploting the result.
 }
