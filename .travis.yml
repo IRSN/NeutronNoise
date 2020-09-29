@@ -33,4 +33,4 @@ addons:
     - g++-7
 
 after_success:
-  - Rscript -e 'covr::codecov()'
+  - Rscript -e 'covr::covr::package_coverage(quiet = FALSE)'
