@@ -6,7 +6,7 @@
 [![codecov](https://codecov.io/gh/IRSN/NeutronNoise/branch/master/graph/badge.svg)](https://codecov.io/gh/IRSN/NeutronNoise)
 <!-- badges: end -->
 
-# NeutronNoise: Tools for neutron noise analysis.
+# NeutronNoise: Tools for neutron noise analysis
 
 Installation
 ------------
@@ -28,5 +28,10 @@ Features
 
 Examples
 --------
+```r
 
+# Generate artificial signal of duration 1000 s with about 5 uncorrelated detections/s and plot it
+artificial_signal(duration = 1000, uncorr_rate = 5) %>% plot()
+
+```
 
