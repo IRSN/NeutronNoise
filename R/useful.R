@@ -7,6 +7,9 @@
 # http://dirk.eddelbuettel.com/blog/2017/06/13/  
 # https://towardsdatascience.com/travis-ci-for-r-advanced-guide-719cb2d9e0e5#5da6
 
+# Sticker generation
+# hexSticker::sticker("man/figures/sticker_base.png", package="NeutronNoise", p_size=6.5, s_x=0.95, s_y=0.9, s_width=0.9, p_color="black", h_fill ="grey", h_color="red", filename = "man/figures/sticker.png", dpi=100, spotlight = T, l_y=0.2)
+
 #' @import ggplot2
 #' @useDynLib NeutronNoise
 #' @importFrom Rcpp sourceCpp
