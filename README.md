@@ -6,7 +6,7 @@
 [![codecov](https://codecov.io/gh/IRSN/NeutronNoise/branch/master/graph/badge.svg)](https://codecov.io/gh/IRSN/NeutronNoise)
 <!-- badges: end -->
 
-# NeutronNoise: Tools for neutron noise analysis
+#   Tools for neutron noise analysis
 
 Installation
 ------------

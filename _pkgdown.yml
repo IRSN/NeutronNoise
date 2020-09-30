@@ -1,0 +1,12 @@
+url: https://irsn.github.io/NeutronNoise/
+
+template:
+  params:
+    bootswatch: cosmo
+
+authors:
+  Wilfried Monange:
+
+development:
+  mode: release
+  
