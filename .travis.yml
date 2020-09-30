@@ -40,18 +40,20 @@ after_success:
 
 before_cache: Rscript -e 'remotes::install_cran("pkgdown")'
 
+# PKG_TARBALL=$(ls -1t *.tar.gz | head -n 1)  
+
 deploy:
-  - provider: releases
-    name: NeutronNoise
-    api_key:
-      secure: "$TRAVIS_DEPLOY_KEY"
-    file_glob: true
-    file: NeutronNoise*.tar.gz
-    on:
+#  - provider: releases
+#    name: NeutronNoise
+#    api_key:
+#      secure: "$TRAVIS_DEPLOY_KEY"
+#    file_glob: true
+#    file: NeutronNoise*.tar.gz
+#    on:
 #      tags: true
-      branch: master
-    skip_cleanup: true
-    overwrite: true
+#      branch: master
+#    skip_cleanup: true
+#    overwrite: true
   - provider: script
     script: 
       - ls
