@@ -26,8 +26,6 @@ script:
   - R CMD build .
   - R CMD check *tar.gz
 
-
-
 addons:
   apt:
     sources:
@@ -36,3 +34,6 @@ addons:
       - gcc-7
       - g++-7
 
+after_success:
+  - Rscript -e 'covr::codecov()'
+  
