@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://irsn.github.io/NeutronNoise//index.html</loc>
+  </url>
+  <url>
+    <loc>https://irsn.github.io/NeutronNoise//reference/NeutronNoise-package.html</loc>
+  </url>
+  <url>
+    <loc>https://irsn.github.io/NeutronNoise//reference/artificial_signal.html</loc>
+  </url>
+  <url>
+    <loc>https://irsn.github.io/NeutronNoise//reference/as_signal.html</loc>
+  </url>
+  <url>
+    <loc>https://irsn.github.io/NeutronNoise//reference/feynman_hist.html</loc>
+  </url>
+  <url>
+    <loc>https://irsn.github.io/NeutronNoise//reference/get_fission_chains_length.html</loc>
+  </url>
+  <url>
+    <loc>https://irsn.github.io/NeutronNoise//reference/lseq.html</loc>
+  </url>
+  <url>
+    <loc>https://irsn.github.io/NeutronNoise//reference/pipe.html</loc>
+  </url>
+  <url>
+    <loc>https://irsn.github.io/NeutronNoise//reference/plot.feynman_hist.html</loc>
+  </url>
+  <url>
+    <loc>https://irsn.github.io/NeutronNoise//reference/plot.signal.html</loc>
+  </url>
+</urlset>
