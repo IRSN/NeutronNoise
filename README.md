@@ -2,7 +2,6 @@
 # NeutronNoise <img src="man/figures/sticker.png" align="right" />
 
 <!-- badges: start -->
-[![Build Status](https://travis-ci.org/IRSN/NeutronNoise.svg?branch=master)](https://travis-ci.org/IRSN/NeutronNoise)
 [![codecov](https://codecov.io/gh/IRSN/NeutronNoise/branch/master/graph/badge.svg)](https://codecov.io/gh/IRSN/NeutronNoise)
 [![R build status](https://github.com/IRSN/NeutronNoise/workflows/R-CMD-check/badge.svg)](https://github.com/IRSN/NeutronNoise/actions)
 <!-- badges: end -->
