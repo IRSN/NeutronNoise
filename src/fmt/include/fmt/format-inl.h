@@ -21,6 +21,9 @@
 #  include <locale>
 #endif
 
+#include <Rcpp.h>
+#include <string>
+
 #if FMT_USE_WINDOWS_H
 #  if !defined(FMT_HEADER_ONLY) && !defined(WIN32_LEAN_AND_MEAN)
 #    define WIN32_LEAN_AND_MEAN
@@ -56,8 +59,9 @@ FMT_BEGIN_NAMESPACE
 namespace internal {
 
 FMT_FUNC void assert_fail(const char* file, int line, const char* message) {
-  print(stderr, "{}:{}: assertion failed: {}", file, line, message);
-  std::abort();
+  //print(stderr, "{}:{}: assertion failed: {}", file, line, message);
+  //std::abort();
+  Rcpp::stop("%s:%i: assertion failed: %s", file, line, message);
 }
 
 #ifndef _MSC_VER
@@ -182,8 +186,10 @@ FMT_FUNC void report_error(format_func func, int error_code,
   memory_buffer full_message;
   func(full_message, error_code, message);
   // Don't use fwrite_fully because the latter may throw.
-  (void)std::fwrite(full_message.data(), full_message.size(), 1, stderr);
-  std::fputc('\n', stderr);
+  //(void)std::fwrite(full_message.data(), full_message.size(), 1, stderr);
+  //std::fputc('\n', stderr);
+  std::string s(full_message.data(), full_message.size());
+  Rcpp::Rcerr << s << std::endl;
 }
 }  // namespace internal
 
@@ -1383,9 +1389,9 @@ FMT_FUNC void vprint(std::FILE* f, string_view format_str, format_args args) {
   internal::fwrite_fully(buffer.data(), 1, buffer.size(), f);
 }
 
-FMT_FUNC void vprint(string_view format_str, format_args args) {
+/*FMT_FUNC void vprint(string_view format_str, format_args args) {
   vprint(stdout, format_str, args);
-}
+}*/
 
 FMT_END_NAMESPACE
 
