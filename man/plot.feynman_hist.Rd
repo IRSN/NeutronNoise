@@ -18,7 +18,6 @@ ggplot object.
 Plot feynman histograms from \code{\link[NeutronNoise]{feynman_hist}} function. The assumed time unit is second.
 }
 \examples{
-hs <- feynman_hist(sort(runif(0,10, n=10000)), c(0.11, 0.33, 0.58))
-plot(hs)
+as_signal(runif(0,10, n=10000), x_duration = 10) \%>\% feynman_hist(c(0.11, 0.33, 0.58)) \%>\% plot()
 
 }

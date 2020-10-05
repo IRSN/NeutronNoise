@@ -16,10 +16,9 @@
 #' @import ggplot2
 #' @export
 plot.signal <- function(x, binwidth = 1, ...) {
-      
+
   ggplot(x, mapping = aes_string(x = "TIME")) +
     labs(x = "Time [s]", y = 'Freqency')+
     theme_bw()+
     geom_histogram(binwidth = binwidth)
-  
 }

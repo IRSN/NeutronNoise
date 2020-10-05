@@ -39,3 +39,7 @@ lseq <- function(from, to, length) {
 stop_if <- function(x, ...){
   if (x) stop(sprintf(...), call. = FALSE)
 }
+
+warning_if <- function(x, ...){
+  if (x) warning(sprintf(...), call. = FALSE)
+}

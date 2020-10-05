@@ -67,6 +67,8 @@ artificial_signal <- function(duration, uncorr_rate = 0, hists_rate = 0, fission
   
   class(d) <- c("signal", "data.table", "data.frame")
   
+  attr(d, "duration") <- duration
+  
   d
 }
 

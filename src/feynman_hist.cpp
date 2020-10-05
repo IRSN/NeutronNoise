@@ -24,52 +24,50 @@ struct FeynmanHistReturn
 //
 //
 auto feynman_hist_sub_task(const double *x_begin, 
-                           const double* x_end, 
-                           double samples_width, 
-                           int max_nb_samples, 
-                           int verbose)
+                           const double *x_end, 
+                           const double x_duration,
+                           const double samples_width, 
+                           const unsigned int max_nb_samples, 
+                           const int verbose)
 {
-  int nb_samples = 0;
   double gate_end = samples_width;
   bool finish = false;
   auto x_it = x_begin;
   IntegerHist h;
   
-  while(x_it != x_end && finish == false && RcppThread::isInterrupted() == false) 
+  
+  
+  while(x_it != x_end && gate_end <= x_duration && h.get_nb_commit() != max_nb_samples && RcppThread::isInterrupted() == false)
   {
-    
-    while (*x_it > gate_end && finish == false)
+    if(*x_it > gate_end)
     {
       h.commit();
       
-      nb_samples ++;
+      gate_end = samples_width * (h.get_nb_commit() + 1);
       
-      if(max_nb_samples != 0 && nb_samples == max_nb_samples) 
-      {
-        finish = true;
-        continue;
-      }
+    } else {
       
-      gate_end = samples_width * (nb_samples + 1);
+      h();
+      
+      x_it ++;
     }
-    
-    h();
-    
-    x_it ++;
   }
   
-  // On ne compte que si on n'est pas arrivé au bout
-  // pour ne pas prendre en compte un échantillon non entier.
-  /*if(x_it != x_end)
+  
+  if(x_it == x_end)
   {
-    h.commit();
-    nb_samples ++;
-  }*/
+    while(gate_end <= x_duration)
+    {
+      h.commit();
+      
+      gate_end = samples_width * (h.get_nb_commit() + 1);
+    }
+  }
   
   
   FeynmanHistReturn ret;
   ret.samples_width = samples_width;
-  ret.nb_samples = nb_samples;
+  ret.nb_samples = h.get_nb_commit();
   
   auto & d = h.get_data();
   
@@ -89,12 +87,12 @@ auto feynman_hist_sub_task(const double *x_begin,
 //' Feynman histogram
 //' 
 //' @description
-//' This function divide the signal into equal samples of width \code{T}. 
+//' This function divide the signal into equal samples of width \code{T} up to the signal duration (\code{attr(s, "duration")}). 
 //' For each of them the number of events are counted and binned into a histogram called the Feynman histogram.
 //' This histogram therefore represents the occurrence probabilities of various multiplets (i.e. 1 detection, 2 detections, etc.) occuring within
 //' a specified time gate width \code{T}.
 //' 
-//' To avoid numerical problem with functions using \code{feynman_hist} the last sample is not taken into account.
+//' If the upper limit of the last sample exceeds the value \code{x_duration} it is not taken into account.
 //' 
 //' This function uses all available cores of the computer.
 //' 
@@ -108,22 +106,19 @@ auto feynman_hist_sub_task(const double *x_begin,
 //' @importFrom magrittr "%>%"
 //' 
 //' @examples
-//' hs <- feynman_hist(sort(runif(0,10, n=10000)), c(0.11, 0.33, 0.58))
-//' plot(hs)
-//' feynman_hist(data.frame(TIME=sort(runif(0,10, n=10000))), c(0.11, 0.33, 0.58)) %>% plot()
 //' artificial_signal(1000, 5) %>% feynman_hist(samples_widths = 0.8) %>% plot()
 //' 
 //' @seealso \link[NeutronNoise]{plot.feynman_hist} for ploting the result.
 //' @export
 // [[Rcpp::export]]
-DataFrame feynman_hist(const SEXP x, 
+DataFrame feynman_hist(const DataFrame x,
                        const NumericVector samples_widths, 
-                       const int max_nb_samples = 0,
+                       int max_nb_samples = 0,
                        const int verbose = 0)
 {
   Log::set_threshold(verbose);
   
-  auto get_x_arg=[&x](){
+  /*auto get_x_arg=[&x](){
     if(TYPEOF(x) == REALSXP || TYPEOF(x) == INTSXP)
     {
       return as<NumericVector>(x);
@@ -134,16 +129,21 @@ DataFrame feynman_hist(const SEXP x,
   };
   
   const NumericVector xx = get_x_arg();
+  */
   
-  stop_if(samples_widths.size() == 0, "samples_widths is empty.");
+  const NumericVector xx = x["TIME"];
   
-  stop_if(min(samples_widths) <= 0, "samples_widths not strictly postive.");
+  stop_if(samples_widths.size() == 0 || min(samples_widths) <= 0, "samples_widths is empty or not strictly positive.");
   
-  stop_if(xx.size() == 0, "x is empty.");
-  
-  stop_if(is_sorted(xx) == false || xx[0] < 0, "x must be positive and sorted.");
+  stop_if(xx.size() == 0 || is_sorted(xx) == false || xx[0] < 0, "x is empty or not sorted or not positive.");
   
   stop_if(max_nb_samples < 0, "max_nb_samples is negative.");
+  
+  double x_duration = x.attr("duration");
+  
+  warning_if(x_duration < xx[xx.size() - 1], "x_duration does not cover all the signal.");
+  
+  max_nb_samples = max_nb_samples == 0 ? numeric_limits<int>::max() : max_nb_samples;
   
   RcppThread::ThreadPool pool;
   
@@ -151,7 +151,7 @@ DataFrame feynman_hist(const SEXP x,
   
   for(int i = 0; i < samples_widths.size(); i++)
   {
-    futures[i] = pool.pushReturn(feynman_hist_sub_task, cbegin(xx), cend(xx), samples_widths[i], max_nb_samples, verbose);
+    futures[i] = pool.pushReturn(feynman_hist_sub_task, cbegin(xx), cend(xx), x_duration, samples_widths[i], max_nb_samples, verbose);
   }
   
   vector<double> ret_samples_widths;

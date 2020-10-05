@@ -20,19 +20,16 @@ The function assumes that the signal starts at the time 0 seconds.}
 A data.frame.
 }
 \description{
-This function divide the signal into equal samples of width \code{T}. 
+This function divide the signal into equal samples of width \code{T} up to the signal duration (\code{attr(s, "duration")}). 
 For each of them the number of events are counted and binned into a histogram called the Feynman histogram.
 This histogram therefore represents the occurrence probabilities of various multiplets (i.e. 1 detection, 2 detections, etc.) occuring within
 a specified time gate width \code{T}.
 
-To avoid numerical problem with functions using \code{feynman_hist} the last sample is not taken into account.
+If the upper limit of the last sample exceeds the value \code{x_duration} it is not taken into account.
 
 This function uses all available cores of the computer.
 }
 \examples{
-hs <- feynman_hist(sort(runif(0,10, n=10000)), c(0.11, 0.33, 0.58))
-plot(hs)
-feynman_hist(data.frame(TIME=sort(runif(0,10, n=10000))), c(0.11, 0.33, 0.58)) \%>\% plot()
 artificial_signal(1000, 5) \%>\% feynman_hist(samples_widths = 0.8) \%>\% plot()
 
 }
