@@ -12,7 +12,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,
-                      fig.path = "man/figures/README-")
+                      fig.path = "man/figures/README-",
+                      out.width = "50%")
 ```
 
 NeutronNoise is a set of tools for neutron noise analysis.
