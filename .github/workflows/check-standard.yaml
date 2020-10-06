@@ -13,11 +13,9 @@ on:
   push:
     branches:
       - master
-      - github_actions
   pull_request:
     branches:
       - master
-      - github_actions
 
 name: R-CMD-check
 
