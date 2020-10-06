@@ -6,7 +6,7 @@
 #' Wrapper to create a signal from a numeric vector.
 #' 
 #' @param x Numeric vector containting time detection.
-#' @param x_duration Signal duration
+#' @param x_duration Signal duration (unitless).
 #' 
 #' @importFrom data.table data.table setkey
 #' @importFrom magrittr "%>%"
