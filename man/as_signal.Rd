@@ -2,22 +2,22 @@
 % Please edit documentation in R/raw_signal.R
 \name{as_signal}
 \alias{as_signal}
-\title{Raw signal}
+\title{Generic to signal}
 \usage{
-as_signal(x, x_duration)
+as_signal(x, x_duration, ...)
 }
 \arguments{
-\item{x}{Numeric vector containting time detection.}
+\item{x}{Data containting time detection.}
 
-\item{x_duration}{Signal duration}
+\item{x_duration}{Signal duration (unitless).}
+
+\item{...}{Unused.}
 }
 \value{
 A sorted data.table containing a TIME column.
 }
 \description{
-Wrapper to create a signal from a numeric vector.
-}
-\examples{
-as_signal(runif(200, 0, 20), x_duration = 20) \%>\% plot()
-
+Wrapper to create a signal from various data type.
+See \code{\link[NeutronNoise]{as_signal.numeric}} and 
+\code{\link[NeutronNoise]{as_signal.data.frame}} for specialised version.
 }

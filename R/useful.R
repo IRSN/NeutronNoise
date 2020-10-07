@@ -43,3 +43,7 @@ stop_if <- function(x, ...){
 warning_if <- function(x, ...){
   if (x) warning(sprintf(...), call. = FALSE)
 }
+
+
+'%ni%' <- function(x,y) {!('%in%'(x,y)) }
+
