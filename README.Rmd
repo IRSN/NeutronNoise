@@ -10,11 +10,11 @@ output: html_document
 [![RBuildStatus](https://github.com/IRSN/NeutronNoise/workflows/R-CMD-check/badge.svg)](https://github.com/IRSN/NeutronNoise/actions)
 <!-- badges: end -->
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,
-                      fig.path = "man/figures/README-",
-                      out.width = "50%")
-```
+  ```{r setup, include=FALSE}
+  knitr::opts_chunk$set(echo = TRUE,
+                        fig.path = "man/figures/README-",
+                        out.width = "50%")
+  ```
 
 NeutronNoise is a set of tools for neutron noise analysis.
 
