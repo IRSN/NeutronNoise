@@ -7,8 +7,7 @@
 feynman_hist(x, samples_widths, max_nb_samples = 0L, verbose = 0L)
 }
 \arguments{
-\item{x}{Either a sorted numeric vector representing the detection times of a data.frame with a sorted TIME column.
-The function assumes that the signal starts at the time 0 seconds.}
+\item{x}{A signal. The function assumes that the signal starts at the time 0 seconds.}
 
 \item{samples_widths}{Numeric vector of samples width (multiple values of \code{T}).}
 

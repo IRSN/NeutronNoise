@@ -96,11 +96,11 @@ auto feynman_hist_sub_task(const double *x_begin,
 //' 
 //' This function uses all available cores of the computer.
 //' 
-//' @param x Either a sorted numeric vector representing the detection times of a data.frame with a sorted TIME column.
-//' The function assumes that the signal starts at the time 0 seconds. 
+//' @param x A signal. The function assumes that the signal starts at the time 0 seconds.
 //' @param samples_widths Numeric vector of samples width (multiple values of \code{T}).
 //' @param max_nb_samples If different from 0 then the calculation is limited to the specified number of samples. 
 //' @param verbose For debbuging purpose only.
+//' 
 //' @return A data.frame.
 //' 
 //' @importFrom magrittr "%>%"
@@ -140,6 +140,8 @@ DataFrame feynman_hist(const DataFrame x,
   stop_if(max_nb_samples < 0, "max_nb_samples is negative.");
   
   double x_duration = x.attr("duration");
+  
+  stop_if(x_duration <= 0, "Negative or zero value for signal duration.");
   
   warning_if(x_duration < xx[xx.size() - 1], "x_duration does not cover all the signal.");
   
