@@ -1,3 +1,0 @@
-# Neutron noise
-
-First release.
