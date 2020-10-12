@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Feynman histogram — feynman_hist • NeutronNoise</title>
+<title>Plot Feynman Variance-to-Mean curve — plot.feynman_v2m • NeutronNoise</title>
 
 
 <!-- jquery -->
@@ -39,13 +39,9 @@
 
 
 
-<meta property="og:title" content="Feynman histogram — feynman_hist" />
-<meta property="og:description" content="This function divide the signal into equal samples of width T up to the signal duration (attr(s, &quot;duration&quot;)). 
-For each of them the number of events are counted and binned into a histogram called the Feynman histogram.
-This histogram therefore represents the occurrence probabilities of various multiplets (i.e. 1 detection, 2 detections, etc.) occuring within
-a specified time gate width T.
-If the upper limit of the last sample exceeds the value x_duration it is not taken into account.
-This function uses all available cores of the computer." />
+<meta property="og:title" content="Plot Feynman Variance-to-Mean curve — plot.feynman_v2m" />
+<meta property="og:description" content="Plot Feynman Variance-to-Mean curve from feynman_v2m function. 
+The assumed time unit is second." />
 
 
 
@@ -113,53 +109,42 @@ This function uses all available cores of the computer." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Feynman histogram</h1>
-    <small class="dont-index">Source: <a href='https://github.com/IRSN/NeutronNoise/blob/master/R/RcppExports.R'><code>R/RcppExports.R</code></a></small>
-    <div class="hidden name"><code>feynman_hist.Rd</code></div>
+    <h1>Plot Feynman Variance-to-Mean curve</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IRSN/NeutronNoise/blob/master/R/feynman_v2m_plot.R'><code>R/feynman_v2m_plot.R</code></a></small>
+    <div class="hidden name"><code>plot.feynman_v2m.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function divide the signal into equal samples of width <code>T</code> up to the signal duration (<code><a href='https://rdrr.io/r/base/attr.html'>attr(s, "duration")</a></code>). 
-For each of them the number of events are counted and binned into a histogram called the Feynman histogram.
-This histogram therefore represents the occurrence probabilities of various multiplets (i.e. 1 detection, 2 detections, etc.) occuring within
-a specified time gate width <code>T</code>.</p>
-<p>If the upper limit of the last sample exceeds the value <code>x_duration</code> it is not taken into account.</p>
-<p>This function uses all available cores of the computer.</p>
+    <p>Plot Feynman Variance-to-Mean curve from <code><a href='feynman_v2m.html'>feynman_v2m</a></code> function. 
+The assumed time unit is second.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>feynman_hist</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>samples_widths</span>, max_nb_samples <span class='op'>=</span> <span class='fl'>0L</span>, verbose <span class='op'>=</span> <span class='fl'>0L</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='co'># S3 method for feynman_v2m</span>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A signal. The function assumes that the signal starts at the time 0 seconds.</p></td>
+      <td><p>data.frame from <a href='feynman_v2m.html'>feynman_v2m</a> functions.</p></td>
     </tr>
     <tr>
-      <th>samples_widths</th>
-      <td><p>Numeric vector of samples width (multiple values of <code>T</code>).</p></td>
-    </tr>
-    <tr>
-      <th>max_nb_samples</th>
-      <td><p>If different from 0 then the calculation is limited to the specified number of samples.</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>For debbuging purpose only.</p></td>
+      <th>...</th>
+      <td><p>Unused.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.frame.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><a href='plot.feynman_hist.html'>plot.feynman_hist</a> for ploting the result.</p></div>
+    <p>ggplot object.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='artificial_signal.html'>artificial_signal</a></span><span class='op'>(</span><span class='fl'>1000</span>, <span class='fl'>5</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>feynman_hist</span><span class='op'>(</span>samples_widths <span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='feynman_hist-1.png' alt='' width='700' height='433' /></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='va'>mls</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>nu <span class='op'>=</span> <span class='fl'>0</span><span class='op'>:</span><span class='fl'>4</span>, pdf <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.1</span>,<span class='fl'>0.3</span>,<span class='fl'>0.35</span>,<span class='fl'>0.4</span>,<span class='fl'>0.2</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='artificial_signal.html'>artificial_signal</a></span><span class='op'>(</span><span class='fl'>1000</span>, hists_rate <span class='op'>=</span> <span class='fl'>5000</span>, 
+                  fission_multiplicity <span class='op'>=</span> <span class='va'>mls</span>, k <span class='op'>=</span> <span class='fl'>0.9</span>, lambda <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<span class='fu'><a href='feynman_v2m.html'>feynman_v2m</a></span><span class='op'>(</span>samples_widths <span class='op'>=</span> <span class='fu'><a href='lseq.html'>lseq</a></span><span class='op'>(</span>from <span class='op'>=</span> <span class='fl'>0.001</span>, to <span class='op'>=</span> <span class='fl'>10</span>, <span class='fl'>50</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='plot.feynman_v2m-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

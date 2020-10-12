@@ -13,7 +13,16 @@
     <loc>https://irsn.github.io/NeutronNoise//reference/as_signal.html</loc>
   </url>
   <url>
+    <loc>https://irsn.github.io/NeutronNoise//reference/as_signal.data.frame.html</loc>
+  </url>
+  <url>
+    <loc>https://irsn.github.io/NeutronNoise//reference/as_signal.numeric.html</loc>
+  </url>
+  <url>
     <loc>https://irsn.github.io/NeutronNoise//reference/feynman_hist.html</loc>
+  </url>
+  <url>
+    <loc>https://irsn.github.io/NeutronNoise//reference/feynman_v2m.html</loc>
   </url>
   <url>
     <loc>https://irsn.github.io/NeutronNoise//reference/get_fission_chains_length.html</loc>
@@ -26,6 +35,9 @@
   </url>
   <url>
     <loc>https://irsn.github.io/NeutronNoise//reference/plot.feynman_hist.html</loc>
+  </url>
+  <url>
+    <loc>https://irsn.github.io/NeutronNoise//reference/plot.feynman_v2m.html</loc>
   </url>
   <url>
     <loc>https://irsn.github.io/NeutronNoise//reference/plot.signal.html</loc>

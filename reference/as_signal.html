@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Raw signal — as_signal • NeutronNoise</title>
+<title>Generic to signal — as_signal • NeutronNoise</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,10 @@
 
 
 
-<meta property="og:title" content="Raw signal — as_signal" />
-<meta property="og:description" content="Wrapper to create a signal from a numeric vector." />
+<meta property="og:title" content="Generic to signal — as_signal" />
+<meta property="og:description" content="Wrapper to create a signal from various data type.
+See as_signal.numeric and 
+as_signal.data.frame for specialised version." />
 
 
 
@@ -87,9 +89,6 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
@@ -111,27 +110,33 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Raw signal</h1>
+    <h1>Generic to signal</h1>
     <small class="dont-index">Source: <a href='https://github.com/IRSN/NeutronNoise/blob/master/R/raw_signal.R'><code>R/raw_signal.R</code></a></small>
     <div class="hidden name"><code>as_signal.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Wrapper to create a signal from a numeric vector.</p>
+    <p>Wrapper to create a signal from various data type.
+See <code><a href='as_signal.numeric.html'>as_signal.numeric</a></code> and 
+<code><a href='as_signal.data.frame.html'>as_signal.data.frame</a></code> for specialised version.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>as_signal</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>x_duration</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>as_signal</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>x_duration</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>Numeric vector containting time detection.</p></td>
+      <td><p>Data containting time detections.</p></td>
     </tr>
     <tr>
       <th>x_duration</th>
-      <td><p>Signal duration</p></td>
+      <td><p>Signal duration (unitless).</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Unused.</p></td>
     </tr>
     </table>
 
@@ -139,10 +144,6 @@
 
     <p>A sorted data.table containing a TIME column.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>as_signal</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span><span class='fl'>200</span>, <span class='fl'>0</span>, <span class='fl'>20</span><span class='op'>)</span>, x_duration <span class='op'>=</span> <span class='fl'>20</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='as_signal-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
