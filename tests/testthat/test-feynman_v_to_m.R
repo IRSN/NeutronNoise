@@ -4,6 +4,8 @@
 
 context("Feynman Variance-to-Mean")
 
+library(dplyr)
+
 # =================================================================================================
 #
 # =================================================================================================
@@ -36,8 +38,6 @@ test_that("wrong parameters values", {
 # =================================================================================================
 test_that("Samples width multiple of signal duration", {
 
-  library(dplyr)
-  
   set.seed(1)
   signal_duration <- 10
   x <- sort(runif(1000, min = 0, max = signal_duration))
@@ -63,8 +63,6 @@ test_that("Samples width multiple of signal duration", {
 # =================================================================================================
 test_that("Signal duration not multiple of samples widths", {
   
-  library(dplyr)
-
   set.seed(1)
   signal_duration <- 10
   x <- sort(runif(1000, min = 0, max = signal_duration))
@@ -90,8 +88,6 @@ test_that("Signal duration not multiple of samples widths", {
 #
 # =================================================================================================
 test_that("Signal duration is shorter", {
-  
-  library(dplyr)
   
   set.seed(1)
   signal_duration <- 10
@@ -123,8 +119,6 @@ test_that("Signal duration is shorter", {
 # =================================================================================================
 test_that("Signal duration is longuer", {
   
-  library(dplyr)
-  
   set.seed(1)
   signal_duration <- 10
   x <- sort(runif(1000, min = 0, max = signal_duration))
@@ -153,9 +147,7 @@ test_that("Signal duration is longuer", {
 #
 # =================================================================================================
 test_that("Limited number of samples", {
-  
-  library(dplyr)
-  
+
   set.seed(1)
   signal_duration <- 10
   x <- sort(runif(1000, min = 0, max = signal_duration))
