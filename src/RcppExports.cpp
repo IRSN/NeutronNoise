@@ -19,6 +19,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// feynman_v2m
+DataFrame feynman_v2m(DataFrame x, NumericVector samples_widths, int max_nb_samples, int verbose);
+RcppExport SEXP _NeutronNoise_feynman_v2m(SEXP xSEXP, SEXP samples_widthsSEXP, SEXP max_nb_samplesSEXP, SEXP verboseSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< DataFrame >::type x(xSEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type samples_widths(samples_widthsSEXP);
+    Rcpp::traits::input_parameter< int >::type max_nb_samples(max_nb_samplesSEXP);
+    Rcpp::traits::input_parameter< int >::type verbose(verboseSEXP);
+    rcpp_result_gen = Rcpp::wrap(feynman_v2m(x, samples_widths, max_nb_samples, verbose));
+    return rcpp_result_gen;
+END_RCPP
+}
 // get_fission_chains_length
 List get_fission_chains_length(int n, DataFrame fission_multiplicity, double k, int seed);
 RcppExport SEXP _NeutronNoise_get_fission_chains_length(SEXP nSEXP, SEXP fission_multiplicitySEXP, SEXP kSEXP, SEXP seedSEXP) {
@@ -36,6 +50,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_NeutronNoise_feynman_hist", (DL_FUNC) &_NeutronNoise_feynman_hist, 4},
+    {"_NeutronNoise_feynman_v2m", (DL_FUNC) &_NeutronNoise_feynman_v2m, 4},
     {"_NeutronNoise_get_fission_chains_length", (DL_FUNC) &_NeutronNoise_get_fission_chains_length, 4},
     {NULL, NULL, 0}
 };

@@ -7,13 +7,24 @@ context("Feynman hist")
 test_that("wrong parameters values", {
   
   # x is unsorted
-  expect_error(feynman_hist(data.frame(TIME = 10:1), samples_widths = 2), "x is empty or not sorted or not positive.")
+  d <- data.frame(TIME = 10:1)
+  attr(d, "duration") <- 10
+  expect_error(feynman_hist(d, samples_widths = 2), "x is empty or not sorted or not positive.")
   
   # x is sorted but contains negative values
-  expect_error(feynman_hist(data.frame(TIME = -1:10), samples_width = 2), "x is empty or not sorted or not positive.")
+  d <- data.frame(TIME = -1:10)
+  attr(d, "duration") <- 10
+  expect_error(feynman_hist(d, samples_width = 2), "x is empty or not sorted or not positive.")
   
-  # x is not has wront type
-  #expect_error(feynman_hist("abc", samples_widths = 2), "Bad x type")
+  # signal duration negative value
+  d <- data.frame(TIME = 1:10)
+  attr(d, "duration") <- -10
+  expect_error(feynman_hist(d, samples_width = 2), "Negative or zero value for signal duration.")
+  
+  # signal duration 0 value
+  d <- data.frame(TIME = 1:10)
+  attr(d, "duration") <- 0
+  expect_error(feynman_hist(d, samples_width = 2), "Negative or zero value for signal duration.")
   
 })
 

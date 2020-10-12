@@ -13,11 +13,11 @@
 #' 
 #' This function uses all available cores of the computer.
 #' 
-#' @param x Either a sorted numeric vector representing the detection times of a data.frame with a sorted TIME column.
-#' The function assumes that the signal starts at the time 0 seconds. 
+#' @param x A signal. The function assumes that the signal starts at the time 0 seconds.
 #' @param samples_widths Numeric vector of samples width (multiple values of \code{T}).
 #' @param max_nb_samples If different from 0 then the calculation is limited to the specified number of samples. 
 #' @param verbose For debbuging purpose only.
+#' 
 #' @return A data.frame.
 #' 
 #' @importFrom magrittr "%>%"
@@ -29,6 +29,37 @@
 #' @export
 feynman_hist <- function(x, samples_widths, max_nb_samples = 0L, verbose = 0L) {
     .Call('_NeutronNoise_feynman_hist', PACKAGE = 'NeutronNoise', x, samples_widths, max_nb_samples, verbose)
+}
+
+#' Feynman Variance-to-Mean
+#' 
+#' Calculation of the Feynman curve from the ratio between the variance and 
+#' the mean minus 1 of the number of detections in consecutive samples.
+#' Variance is calculated using Bessel's correction.
+#' 
+#' @param x A signal. The function assumes that the signal starts at the time 0 seconds.
+#' @param samples_widths Numeric vector of samples widths.
+#' @param max_nb_samples Maximum number of samples to take into account for the calculation. 
+#' Unlimited if 0.
+#' @param verbose For debugging purpose.
+#' 
+#' @return A data.frame containing for each samples width :
+#' - The number of samples used
+#' - The count rate "Y1"
+#' - The Feynamn Variance-to-Mean value "Y"
+#' - The Feynman Variance-to-Mean standard deviation "Y_std"
+#' 
+#' @importFrom magrittr "%>%"
+#' 
+#' @examples
+#' mls <- data.frame(nu = 0:4, pdf = c(0.1,0.3,0.35,0.4,0.2))
+#' artificial_signal(1000, hists_rate = 5000, fission_multiplicity = mls, 
+#' k = 0.9, lambda = 10) %>%
+#' feynman_v2m(samples_widths = lseq(from = 0.001, to = 10, 50)) %>% plot()
+#' 
+#' @export
+feynman_v2m <- function(x, samples_widths, max_nb_samples = 0L, verbose = 0L) {
+    .Call('_NeutronNoise_feynman_v2m', PACKAGE = 'NeutronNoise', x, samples_widths, max_nb_samples, verbose)
 }
 
 #' Generate virtual fission chains length
