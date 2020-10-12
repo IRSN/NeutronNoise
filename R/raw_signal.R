@@ -45,7 +45,7 @@ as_signal.numeric <- function(x, x_duration, ...)
 {
   stop_if(min(x) < 0, "Negative x values.")
   
-  warning_if(x_duration < max(x), "x_duration does not cover all x values.")
+  warning_if(x_duration < max(x), "x_duration does not cover all the signal.")
   
   d <- data.table(TIME = x)
   

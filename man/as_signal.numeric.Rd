@@ -7,7 +7,7 @@
 \method{as_signal}{numeric}(x, x_duration, ...)
 }
 \arguments{
-\item{x}{Numeric vector containting time detection.}
+\item{x}{Numeric vector containting time detections.}
 
 \item{x_duration}{Signal duration (unitless).}
 

@@ -7,7 +7,7 @@
 as_signal(x, x_duration, ...)
 }
 \arguments{
-\item{x}{Data containting time detection.}
+\item{x}{Data containting time detections.}
 
 \item{x_duration}{Signal duration (unitless).}
 
