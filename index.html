@@ -89,6 +89,7 @@
 <ul>
 <li><p>Artificial signal generation.</p></li>
 <li><p>Multi-Thread Feynman histogram calculation.</p></li>
+<li><p>Feynman Variance-to-Mean calculation.</p></li>
 </ul>
 </div>
 <div id="examples" class="section level2">
@@ -98,18 +99,18 @@
 <span id="cb2-2"><a href="#cb2-2"></a></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Generate artificial signal of duration 1000 s with about 5 uncorrelated detections/s and plot it</span></span>
 <span id="cb2-4"><a href="#cb2-4"></a><span class="kw">artificial_signal</span>(<span class="dt">duration =</span> <span class="dv">1000</span>, <span class="dt">uncorr_rate =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">plot</span>()</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-2-1.png"></p>
+<p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="50%"></p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Feynman histogram of a signal with no time correlation (poison source)</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="kw">artificial_signal</span>(<span class="dt">duration =</span> <span class="dv">1000</span>, <span class="dt">uncorr_rate =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="st">  </span><span class="kw">feynman_hist</span>(<span class="dt">samples_widths =</span> <span class="kw">c</span>(<span class="fl">1.1</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb3-4"><a href="#cb3-4"></a><span class="st">  </span><span class="kw">plot</span>()</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-2-2.png"></p>
+<p><img src="reference/figures/README-unnamed-chunk-2-2.png" width="50%"></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Feynman histogram of a signal with correlated detections</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>fs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">nu =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">4</span>,<span class="dt">pdf =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>))  <span class="co"># Fission multiplicity</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a><span class="kw">artificial_signal</span>(<span class="dt">duration =</span> <span class="dv">400</span>, <span class="dt">hists_rate =</span> <span class="dv">400</span>, <span class="dt">fission_multiplicity =</span> fs, <span class="dt">k =</span> <span class="fl">0.95</span>, <span class="dt">lambda =</span> <span class="fl">0.001</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb4-4"><a href="#cb4-4"></a><span class="st">  </span><span class="kw">feynman_hist</span>(<span class="dt">samples_widths =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.3</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb4-5"><a href="#cb4-5"></a><span class="st">  </span><span class="kw">plot</span>()</span></code></pre></div>
-<p><img src="reference/figures/README-unnamed-chunk-2-3.png"></p>
+<p><img src="reference/figures/README-unnamed-chunk-2-3.png" width="50%"></p>
 </div>
 </div>
   </div>
