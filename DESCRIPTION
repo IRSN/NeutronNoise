@@ -5,7 +5,9 @@ Version: 0.1
 Date: 2020-09-14
 Author: Wilfried Monange
 Maintainer: Wilfried Monange <wilfried.monange@irsn.fr>
-Description: Neutron noise analysis tools.
+Description: Set of tools for neutron noise analysis. It includes generation 
+    of signals and multiple calculation of observables like Rossi-Alpha, 
+    Feynman Variance-to-Mean, Feynman histograms, etc.
 License: GPL (>= 3) + file LICENSE
 LazyData: TRUE
 Imports: 
