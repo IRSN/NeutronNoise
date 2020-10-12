@@ -36,6 +36,8 @@ Features
 
 - Multi-Thread Feynman histogram calculation.
 
+- Feynman Variance-to-Mean calculation.
+
 
 Examples
 --------
