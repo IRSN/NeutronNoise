@@ -1,6 +1,6 @@
 
 
-context("Feynman plot")
+context("Feynman histogram plot")
 
 test_that("Normal", {
   
