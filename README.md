@@ -24,6 +24,8 @@ Features
 
 -   Multi-Thread Feynman histogram calculation.
 
+-   Feynman Variance-to-Mean calculation.
+
 Examples
 --------
 
@@ -32,14 +34,14 @@ Examples
     # Generate artificial signal of duration 1000 s with about 5 uncorrelated detections/s and plot it
     artificial_signal(duration = 1000, uncorr_rate = 5) %>% plot()
 
-![](man/figures/README-unnamed-chunk-2-1.png)
+<img src="man/figures/README-unnamed-chunk-2-1.png" width="50%" />
 
     # Feynman histogram of a signal with no time correlation (poison source)
     artificial_signal(duration = 1000, uncorr_rate = 5) %>% 
       feynman_hist(samples_widths = c(1.1, 2)) %>% 
       plot()
 
-![](man/figures/README-unnamed-chunk-2-2.png)
+<img src="man/figures/README-unnamed-chunk-2-2.png" width="50%" />
 
     # Feynman histogram of a signal with correlated detections
     fs <- data.frame(nu = 0:4,pdf = c(0.1, 0.5, 0.7, 0.2, 0.2))  # Fission multiplicity
@@ -47,4 +49,4 @@ Examples
       feynman_hist(samples_widths = c(0.1, 0.3)) %>% 
       plot()
 
-![](man/figures/README-unnamed-chunk-2-3.png)
+<img src="man/figures/README-unnamed-chunk-2-3.png" width="50%" />
