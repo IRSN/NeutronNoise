@@ -68,20 +68,26 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="neutronnoise-" class="section level1">
+
+<div id="neutronnoise-readme" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
+<a href="#neutronnoise-readme" class="anchor"></a>NeutronNoise Readme</h1></div>
+</div>
+<div id="neutronnoise-" class="section level1">
+<h1 class="hasAnchor">
 <a href="#neutronnoise-" class="anchor"></a>NeutronNoise <img src="reference/figures/sticker.png" align="right">
-</h1></div>
+</h1>
 <!-- badges: start -->
 
 <p>NeutronNoise is a set of tools for neutron noise analysis.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Install devtools, if you haven't already.</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">install.packages</span>(<span class="st">"devtools"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a></span>
-<span id="cb1-4"><a href="#cb1-4"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"IRSN/NeutronNoise"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co"># Install devtools, if you haven't already.</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
+
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"IRSN/NeutronNoise"</span><span class="op">)</span></pre></div>
 </div>
 <div id="features" class="section level2">
 <h2 class="hasAnchor">
@@ -90,29 +96,35 @@
 <li><p>Artificial signal generation.</p></li>
 <li><p>Multi-Thread Feynman histogram calculation.</p></li>
 <li><p>Feynman Variance-to-Mean calculation.</p></li>
+<li><p>Single, double and triple count rate calculation based on Feynman histogram.</p></li>
+<li><p>Feynman curve calculatino based on Feynman histogram.</p></li>
 </ul>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">library</span>(NeutronNoise)</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># Generate artificial signal of duration 1000 s with about 5 uncorrelated detections/s and plot it</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="kw">artificial_signal</span>(<span class="dt">duration =</span> <span class="dv">1000</span>, <span class="dt">uncorr_rate =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">plot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/IRSN/NeutronNoise">NeutronNoise</a></span><span class="op">)</span>
+
+<span class="co"># Generate artificial signal of duration 1000 s with about 5 uncorrelated detections/s and plot it</span>
+<span class="fu"><a href="reference/artificial_signal.html">artificial_signal</a></span><span class="op">(</span>duration <span class="op">=</span> <span class="fl">1000</span>, uncorr_rate <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-2-1.png" width="50%"></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Feynman histogram of a signal with no time correlation (poison source)</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">artificial_signal</span>(<span class="dt">duration =</span> <span class="dv">1000</span>, <span class="dt">uncorr_rate =</span> <span class="dv">5</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="st">  </span><span class="kw">feynman_hist</span>(<span class="dt">samples_widths =</span> <span class="kw">c</span>(<span class="fl">1.1</span>, <span class="dv">2</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="st">  </span><span class="kw">plot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="co"># Feynman histogram of a signal with no time correlation (poison source)</span>
+<span class="fu"><a href="reference/artificial_signal.html">artificial_signal</a></span><span class="op">(</span>duration <span class="op">=</span> <span class="fl">1000</span>, uncorr_rate <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="reference/feynman_hist.html">feynman_hist</a></span><span class="op">(</span>samples_widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1.1</span>, <span class="fl">2</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-2-2.png" width="50%"></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Feynman histogram of a signal with correlated detections</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>fs &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">nu =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">4</span>,<span class="dt">pdf =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>))  <span class="co"># Fission multiplicity</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="kw">artificial_signal</span>(<span class="dt">duration =</span> <span class="dv">400</span>, <span class="dt">hists_rate =</span> <span class="dv">400</span>, <span class="dt">fission_multiplicity =</span> fs, <span class="dt">k =</span> <span class="fl">0.95</span>, <span class="dt">lambda =</span> <span class="fl">0.001</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="st">  </span><span class="kw">feynman_hist</span>(<span class="dt">samples_widths =</span> <span class="kw">c</span>(<span class="fl">0.1</span>, <span class="fl">0.3</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="st">  </span><span class="kw">plot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit">
+<span class="co"># Feynman histogram of a signal with correlated detections</span>
+<span class="va">fs</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>nu <span class="op">=</span> <span class="fl">0</span><span class="op">:</span><span class="fl">4</span>,pdf <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.5</span>, <span class="fl">0.7</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span><span class="op">)</span><span class="op">)</span>  <span class="co"># Fission multiplicity</span>
+<span class="fu"><a href="reference/artificial_signal.html">artificial_signal</a></span><span class="op">(</span>duration <span class="op">=</span> <span class="fl">400</span>, hists_rate <span class="op">=</span> <span class="fl">400</span>, fission_multiplicity <span class="op">=</span> <span class="va">fs</span>, k <span class="op">=</span> <span class="fl">0.95</span>, lambda <span class="op">=</span> <span class="fl">0.001</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="reference/feynman_hist.html">feynman_hist</a></span><span class="op">(</span>samples_widths <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0.1</span>, <span class="fl">0.3</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-unnamed-chunk-2-3.png" width="50%"></p>
 </div>
 </div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

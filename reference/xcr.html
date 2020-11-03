@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • NeutronNoise</title>
+<title>Calculate single counte rate, double counte rate and triple counte rate — xcr • NeutronNoise</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,19 @@
 
 
 
-<meta property="og:title" content="Function reference" />
+<meta property="og:title" content="Calculate single counte rate, double counte rate and triple counte rate — xcr" />
+<meta property="og:description" content="Thoses count rates are calculated base on the feynman histograms obtain from 
+ feynman_hist function. 
+The assumed time unit is second.
+The calculated values are:
+-  Y1: single count rate
+-  Y2: double count rate
+-  Y3: triple count rate
+-  Y1_std: standard deviation of Y1
+-  Y2_std: standard deviation of Y2
+-  Y3_std: standard deviation of Y3
+-  Y: Feynman value
+-  Y_std: standard deviation of Y" />
 
 
 
@@ -58,7 +70,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -105,114 +117,53 @@
       </header>
 
 <div class="row">
-  <div class="contents col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Reference</h1>
+    <h1>Calculate single counte rate, double counte rate and triple counte rate</h1>
+    <small class="dont-index">Source: <a href='https://github.com/IRSN/NeutronNoise/blob/master/R/xcr.R'><code>R/xcr.R</code></a></small>
+    <div class="hidden name"><code>xcr.Rd</code></div>
     </div>
 
-    <table class="ref-index">
+    <div class="ref-description">
+    <p>Thoses count rates are calculated base on the feynman histograms obtain from 
+ <code><a href='feynman_hist.html'>feynman_hist</a></code> function. 
+The assumed time unit is second.</p>
+<p>The calculated values are:</p>
+<p>-  Y1: single count rate
+-  Y2: double count rate
+-  Y3: triple count rate
+-  Y1_std: standard deviation of Y1
+-  Y2_std: standard deviation of Y2
+-  Y3_std: standard deviation of Y3
+-  Y: Feynman value
+-  Y_std: standard deviation of Y</p>
+    </div>
 
-    <colgroup>
-      
-      <col class="alias" />
-      <col class="title" />
-    </colgroup>
+    <pre class="usage"><span class='fu'>xcr</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
 
-    <tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-          <p class="section-desc"></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="NeutronNoise-package.html">NeutronNoise-package</a></code> </p>
-        </td>
-        <td><p>Neutron noise analysis tools</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="artificial_signal.html">artificial_signal()</a></code> </p>
-        </td>
-        <td><p>Artificial signal</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as_signal.html">as_signal()</a></code> </p>
-        </td>
-        <td><p>Generic to signal</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as_signal.data.frame.html">as_signal(<i>&lt;data.frame&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>data.frame to signal</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="as_signal.numeric.html">as_signal(<i>&lt;numeric&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Numeric to signal</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="feynman_hist.html">feynman_hist()</a></code> </p>
-        </td>
-        <td><p>Feynman histogram</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="feynman_v2m.html">feynman_v2m()</a></code> </p>
-        </td>
-        <td><p>Feynman Variance-to-Mean</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="get_fission_chains_length.html">get_fission_chains_length()</a></code> </p>
-        </td>
-        <td><p>Generate virtual fission chains length</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="lseq.html">lseq()</a></code> </p>
-        </td>
-        <td><p>Logarithmic sequence</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.feynman_hist.html">plot(<i>&lt;feynman_hist&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot feynman histograms</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.feynman_v2m.html">plot(<i>&lt;feynman_v2m&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot Feynman Variance-to-Mean curve</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="plot.signal.html">plot(<i>&lt;signal&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot a signal</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="xcr.html">xcr()</a></code> </p>
-        </td>
-        <td><p>Calculate single counte rate, double counte rate and triple counte rate</p></td>
-      </tr>
-    </tbody>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>feynman_hist object from <a href='feynman_hist.html'>feynman_hist</a> functions.</p></td>
+    </tr>
     </table>
-  </div>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>xcr object which is a tibble object.</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='artificial_signal.html'>artificial_signal</a></span><span class='op'>(</span><span class='fl'>1000</span>, <span class='fl'>5</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='feynman_hist.html'>feynman_hist</a></span><span class='op'>(</span>samples_widths <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.8</span>, <span class='fl'>0.9</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'>xcr</span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;    samples_width     Y1         Y2           Y3     Y1_std     Y2_std   Y3_std
+#&gt; 1:           0.8 5.0000 -0.0900000 -0.002333333 0.06945401 0.09383264 0.107024
+#&gt; 2:           0.9 5.0005 -0.1071358 -0.052269516 0.06921719 0.09984402 0.118011
+#&gt;              Y      Y_std
+#&gt; 1: -0.03600000 0.03752202
+#&gt; 2: -0.04285005 0.03990613</div><div class='input'>
+</div></pre>
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
       <h2 data-toc-skip>Contents</h2>
