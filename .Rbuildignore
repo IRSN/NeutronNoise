@@ -11,3 +11,5 @@
 ^pkgdown$
 ^\.github$
 tests\\
+^TODO$
+^README\.Rmd$

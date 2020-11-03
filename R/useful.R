@@ -11,6 +11,14 @@
 # Sticker generation
 # hexSticker::sticker("man/figures/sticker_base.png", package="NeutronNoise", p_size=6.5, s_x=0.95, s_y=0.9, s_width=0.9, p_color="black", h_fill ="grey", h_color="red", filename = "man/figures/sticker.png", dpi=100, spotlight = T, l_y=0.2)
 
+# Avant chaque publication :
+# devtools::test()
+# devtools::test_coverage()
+# pkgdown::build_site()
+# Création du README.md (clique knit)
+# Vérification de DESCRIPTION (version du package)
+# devtools::check()
+
 #' @import ggplot2
 #' @useDynLib NeutronNoise
 #' @importFrom Rcpp sourceCpp

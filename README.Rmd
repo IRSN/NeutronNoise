@@ -1,6 +1,6 @@
 ---
 title: "NeutronNoise Readme"
-output: html_document
+output: github_document
 ---
 
 # NeutronNoise <img src="man/figures/sticker.png" align="right" />
@@ -38,6 +38,9 @@ Features
 
 - Feynman Variance-to-Mean calculation.
 
+- Single, double and triple count rate calculation based on Feynman histogram.
+
+- Feynman curve calculatino based on Feynman histogram.
 
 Examples
 --------
