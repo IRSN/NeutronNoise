@@ -1,7 +1,7 @@
 Package: NeutronNoise
 Type: Package
 Title: Neutron noise analysis tools
-Version: 0.1
+Version: 0.1.0.9000
 Date: 2020-09-14
 Author: Wilfried Monange
 Maintainer: Wilfried Monange <wilfried.monange@irsn.fr>
