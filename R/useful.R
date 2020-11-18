@@ -18,6 +18,8 @@
 # Création du README.md (clique knit)
 # Vérification de DESCRIPTION (version du package)
 # devtools::check()
+# Incrémentation de la versin dév
+# usethis::use_dev_version()
 
 #' @import ggplot2
 #' @useDynLib NeutronNoise
