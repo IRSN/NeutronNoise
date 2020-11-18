@@ -1,6 +1,6 @@
 CXX_STD = CXX17
 
-CPPFILES = RcppExports.cpp feynman_v_to_m.cpp get_fission_chain_length.cpp feynman_hist.cpp fmt/format.cpp fmt/posix.cpp
+CPPFILES = RcppExports.cpp shift_histories.cpp feynman_v_to_m.cpp get_fission_chain_length.cpp feynman_hist.cpp fmt/format.cpp fmt/posix.cpp
 
 SOURCES = $(CPPFILES)
 

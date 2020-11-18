@@ -47,11 +47,24 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// signal_shift_histories
+void signal_shift_histories(NumericVector times, IntegerVector hists, double duration);
+RcppExport SEXP _NeutronNoise_signal_shift_histories(SEXP timesSEXP, SEXP histsSEXP, SEXP durationSEXP) {
+BEGIN_RCPP
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type times(timesSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type hists(histsSEXP);
+    Rcpp::traits::input_parameter< double >::type duration(durationSEXP);
+    signal_shift_histories(times, hists, duration);
+    return R_NilValue;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_NeutronNoise_feynman_hist", (DL_FUNC) &_NeutronNoise_feynman_hist, 4},
     {"_NeutronNoise_feynman_v2m", (DL_FUNC) &_NeutronNoise_feynman_v2m, 4},
     {"_NeutronNoise_get_fission_chains_length", (DL_FUNC) &_NeutronNoise_get_fission_chains_length, 4},
+    {"_NeutronNoise_signal_shift_histories", (DL_FUNC) &_NeutronNoise_signal_shift_histories, 3},
     {NULL, NULL, 0}
 };
 

@@ -94,3 +94,7 @@ get_fission_chains_length <- function(n, fission_multiplicity, k, seed = 1L) {
     .Call('_NeutronNoise_get_fission_chains_length', PACKAGE = 'NeutronNoise', n, fission_multiplicity, k, seed)
 }
 
+signal_shift_histories <- function(times, hists, duration) {
+    invisible(.Call('_NeutronNoise_signal_shift_histories', PACKAGE = 'NeutronNoise', times, hists, duration))
+}
+

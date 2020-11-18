@@ -4,12 +4,16 @@
 \alias{as_signal.data.frame}
 \title{data.frame to signal}
 \usage{
-\method{as_signal}{data.frame}(x, x_duration, ...)
+\method{as_signal}{data.frame}(x, x_duration, is_t0 = FALSE, ...)
 }
 \arguments{
 \item{x}{data.frame containing at least a TIME column with numeric values.}
 
 \item{x_duration}{Signal duration (unitless).}
+
+\item{is_t0}{If TRUE this means that all source events were generated at time 0. 
+The function then distributes the histories over the specified time interval \code{x_duration}. 
+\code{x} must contains in addition to the TIME column the HIST column (story identifier).}
 
 \item{...}{Unused.}
 }
