@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">NeutronNoise</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0.9000</span>
       </span>
     </div>
 
@@ -118,7 +118,7 @@
     </div>
 
     <pre class="usage"><span class='co'># S3 method for data.frame</span>
-<span class='fu'><a href='as_signal.html'>as_signal</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>x_duration</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+<span class='fu'><a href='as_signal.html'>as_signal</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>x_duration</span>, is_t0 <span class='op'>=</span> <span class='cn'>FALSE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -130,6 +130,12 @@
     <tr>
       <th>x_duration</th>
       <td><p>Signal duration (unitless).</p></td>
+    </tr>
+    <tr>
+      <th>is_t0</th>
+      <td><p>If TRUE this means that all source events were generated at time 0. 
+The function then distributes the histories over the specified time interval <code>x_duration</code>. 
+<code>x</code> must contains in addition to the TIME column the HIST column (story identifier).</p></td>
     </tr>
     <tr>
       <th>...</th>
