@@ -112,7 +112,10 @@ auto feynman_v2m_sub(const NumericVector & x, const double x_duration, const dou
 //' 
 //' @export
 // [[Rcpp::export]]
-DataFrame feynman_v2m(DataFrame x, NumericVector samples_widths, int max_nb_samples = 0, int verbose = 0)
+DataFrame feynman_v2m(DataFrame x, 
+                      NumericVector samples_widths, 
+                      int max_nb_samples = 0, 
+                      int verbose = 0)
 {
   Log::set_threshold(verbose);
   
